@@ -107,7 +107,6 @@ services:
       - "traefik.http.routers.pgadmin.entrypoints=web"
   rundeck:
     image: ghcr.io/fblettner/liberty-rundeck:latest
-    platform: linux/amd64
     volumes:
       - rundeck-data:/app/rundeck
       - talend-config:/opt/config
