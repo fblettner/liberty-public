@@ -1,15 +1,37 @@
-# Liberty Framework
-This public repository contains all the files needed for the deployment
+# Liberty Framework 🚀
 
-Liberty Framework is a no-code development platform built with cutting-edge technologies such as React, Node.js, and PostgreSQL. This framework includes essential management tools like Traefik, Rundeck, and PgAdmin, allowing you to create web applications in no time, without the need for coding skills.
+Welcome to **Liberty Framework**, a **no-code development platform** designed for rapid and efficient web application creation using the latest in **React**, **Node.js**, and **PostgreSQL** technologies. Whether you're a developer or a non-technical user, Liberty Framework empowers you to build robust applications with **zero coding skills** required.
 
-Liberty Framework also features a native connector for JD Edwards, enabling efficient management of access rights, task segregation, and Oracle license compliance. With its modern architecture, it provides a comprehensive solution to design robust applications in record time.
+## Why Choose Liberty Framework? 🤔
 
-- Go to [Liberty Framework](https://github.com/fblettner/liberty-public) for details about our framework
-- Go to [Documentation](https://docs.nomana-it.fr/) for all products documentation, knowledge base...
-- Go to [Repository](https://docs.nomana-it.fr/) for all others products available as public resources
-- Go to [Demo](https://liberty.nomana-it.fr/) for testing our framework
+- **Cutting-Edge Technology**: Built with modern web technologies like **React**, **Node.js**, and **PostgreSQL**, ensuring scalability, flexibility, and performance.
+  
+- **Management Tools Included**: Integrated with essential management tools like:
+  - 🌐 **Traefik**: A powerful reverse proxy for routing and load balancing.
+  - ⚙️ **Rundeck**: Automate and manage workflows effortlessly.
+  - 🐘 **pgAdmin**: Manage your PostgreSQL database visually with ease.
+  
+- **No-Code Development**: Create feature-rich web applications without writing a single line of code, making it accessible to **developers and non-developers** alike.
 
+- **JD Edwards Integration**: **Native connector** for **JD Edwards**, making access management, task segregation, and Oracle license compliance a breeze. Perfect for **enterprise-level** operations.
+
+- **Fast Application Design**: With Liberty Framework’s **modern architecture**, you can design and deploy powerful applications in record time! 🚀
+
+## Explore Liberty Framework 💡
+
+Here are some quick resources to help you dive into the Liberty Framework:
+
+- 🔗 **[Visit the Liberty Framework Repository](https://github.com/fblettner/liberty-public)**: Explore the public repository with all the files you need for deployment.
+  
+- 📚 **[View the Documentation](https://docs.nomana-it.fr/)**: Get detailed information on all our products, access the knowledge base, and explore technical documentation.
+  
+- 💻 **[Check Out the Demo](https://liberty.nomana-it.fr/)**: Experience the Liberty Framework in action with our live demo and test it for yourself.
+
+- 🔍 **[Explore Other Public Resources](https://docs.nomana-it.fr/)**: Discover more products available as public resources in our repository.
+
+---
+
+Liberty Framework is the ideal platform for creating **enterprise-grade** web applications with ease and speed. Join us and experience the future of no-code development today! 🌟
 
 # Liberty Framework Services Documentation 🚀
 
