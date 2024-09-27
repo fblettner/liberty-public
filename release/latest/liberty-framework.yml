@@ -173,7 +173,6 @@ services:
       - "traefik.http.middlewares.oidc-cors.headers.addvaryheader=true"
       - "traefik.http.routers.oidc.middlewares=oidc-cors"
   filebrowser:
-    container_name: filebrowser
     image: ghcr.io/fblettner/liberty-filebrowser:latest
     healthcheck:
       test: ["CMD", "curl", "-f", "http://filebrowser/health"]
