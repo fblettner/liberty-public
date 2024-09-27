@@ -110,6 +110,7 @@ services:
     volumes:
       - rundeck-data:/app/rundeck
       - talend-config:/opt/config
+      - rundeck-config:/opt/rundeck
     security_opt:
       - "label:disable"
     cap_drop:
@@ -131,7 +132,6 @@ services:
       - "traefik.http.routers.rundeck-https.entrypoints=websecure"
       - "traefik.http.routers.rundeck-https.tls=true"
       - "traefik.http.routers.rundeck-https.middlewares=error-pages-middleware" 
-
 
       # Rundeck Service (Port 4440)
       - "traefik.http.services.rundeck.loadbalancer.server.port=4440"
@@ -181,9 +181,7 @@ services:
       timeout: 5s
       retries: 3
     volumes:
-      - rundeck-data:/volumes/rundeck
-      - pg-data:/volumes/pg
-      - pgadmin-data:/volumes/pgadmin
+      - rundeck-config:/srv/rundeck
       - fb-config:/config
       - fb-data:/srv
       - talend-config:/srv/talend
@@ -211,6 +209,8 @@ volumes:
     name: pgadmin-data
   rundeck-data:
     name: rundeck-data
+  rundeck-config:
+    name: rundeck-config    
   talend-config:
     name: talend-config
   nginx-config:
