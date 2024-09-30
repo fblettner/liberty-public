@@ -27,7 +27,7 @@ Here are some quick resources to help you dive into the Liberty Framework:
   
 - 💻 **[Check Out the Demo](https://liberty.nomana-it.fr/)**: Experience the Liberty Framework in action with our live demo and test it for yourself.
 
-- 🔍 **[Explore Other Public Resources](https://docs.nomana-it.fr/)**: Discover more products available as public resources in our repository.
+- 🔍 **[Explore Other Public Resources](https://github.com/fblettner)**: Discover more products available as public resources in our repository.
 
 ---
 
