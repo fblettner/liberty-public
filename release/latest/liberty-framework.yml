@@ -102,9 +102,16 @@ services:
       - pg
     labels:
       - "traefik.enable=true"
+      # HTTP Router for pgadmin
       - "traefik.http.routers.pgadmin.rule=PathPrefix(`/pgadmin`)"
-      - "traefik.http.services.pgadmin.loadbalancer.server.port=3003"
       - "traefik.http.routers.pgadmin.entrypoints=web"
+
+      # HTTPS Router for pgadmin
+      - "traefik.http.routers.pgadmin-https.rule=PathPrefix(`/pgadmin`)"
+      - "traefik.http.routers.pgadmin-https.entrypoints=websecure" 
+
+      # pgadmin Service (Port 3003)
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=3003"
   rundeck:
     image: ghcr.io/fblettner/liberty-rundeck:latest
     volumes:
