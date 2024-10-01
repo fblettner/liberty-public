@@ -192,11 +192,20 @@ services:
       - liberty-network 
     labels:
       - "traefik.enable=true"
+      # HTTP Router for Filebrowser
       - "traefik.http.routers.filebrowser.rule=PathPrefix(`/filebrowser`)"
-      - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
       - "traefik.http.routers.filebrowser.entrypoints=web"
+      - "traefik.http.routers.filebrowser.middlewares=filebrowser-strip"     
+
+      # HTTPS Router for Filebrowser
+      - "traefik.http.routers.filebrowser-https.rule=PathPrefix(`/filebrowser`)"
+      - "traefik.http.routers.filebrowser-https.entrypoints=websecure" 
+      - "traefik.http.routers.filebrowser-https.tls=true"
+      - "traefik.http.routers.filebrowser-https.middlewares=filebrowser-strip"     
+
+      # Filebrowser Service (Port 80)
       - "traefik.http.middlewares.filebrowser-strip.stripprefix.prefixes=/filebrowser"
-      - "traefik.http.routers.filebrowser.middlewares=filebrowser-strip"      
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
 volumes:
   fb-config:
     name: fb-config
