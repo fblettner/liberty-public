@@ -8,7 +8,7 @@ Welcome to **Liberty Framework**, a **no-code development platform** designed fo
   
 - **Management Tools Included**: Integrated with essential management tools like:
   - 🌐 **Traefik**: A powerful reverse proxy for routing and load balancing.
-  - ⚙️ **Rundeck**: Automate and manage workflows effortlessly.
+  - ⚙️ **AirFlow**: Automate and manage workflows effortlessly.
   - 🐘 **pgAdmin**: Manage your PostgreSQL database visually with ease.
   
 - **No-Code Development**: Create feature-rich web applications without writing a single line of code, making it accessible to **developers and non-developers** alike.
@@ -35,7 +35,7 @@ Liberty Framework is the ideal platform for creating **enterprise-grade** web ap
 
 # Liberty Framework Services Documentation 🚀
 
-This document provides an overview of the functionality and configuration of the services within the **Liberty Framework**, including **Node.js**, **PostgreSQL**, **pgAdmin**, **Rundeck**, **OIDC**, and **Filebrowser**. These services are integrated with **Traefik** as a reverse proxy, enabling both HTTP and HTTPS access with automated routing. 
+This document provides an overview of the functionality and configuration of the services within the **Liberty Framework**, including **Node.js**, **PostgreSQL**, **pgAdmin**, **Airflow**, **OIDC**, and **Gitea**. These services are integrated with **Traefik** as a reverse proxy, enabling both HTTP and HTTPS access with automated routing. 
 
 ---
 
@@ -89,21 +89,20 @@ This document provides an overview of the functionality and configuration of the
 
 ---
 
-## 4. **Rundeck Service (`liberty-rundeck`)** 🛠️
+## 4. **Airflow Service (`liberty-airflow`)** 🛠️
 
-- **Image**: `ghcr.io/fblettner/liberty-rundeck:latest`
+- **Image**: `ghcr.io/fblettner/liberty-airflow:latest`
 - **Security Options**:
   - 🔒 Disables SELinux labels.
   - ⚙️ Drops capabilities `MKNOD` and `AUDIT_WRITE`.
 - **Volumes**: 
-  - Data stored in the `rundeck-data` volume.
-  - Configurations in `rundeck-config` and `talend-config`.
-- **Depends on**: PostgreSQL (`pg`).
+  - Logs stored in the `airflow-logs` volume.
+- **Depends on**: PostgreSQL (`pg`), Gitea (`gitea`).
 - **Networks**: Connected to `liberty-network`.
 - **Traefik Configuration**:
-  - 🌐 **Routing**: Handles HTTP and HTTPS requests for `/rundeck`.
+  - 🌐 **Routing**: Handles HTTP and HTTPS requests for `/airflow/home`.
   - ⚠️ **Error Pages Middleware**: Applied to both HTTP and HTTPS routes.
-  - 🔌 **Port**: Exposed on port `4440`.
+  - 🔌 **Port**: Exposed on port `8080`.
 
 ---
 
@@ -123,32 +122,31 @@ This document provides an overview of the functionality and configuration of the
 
 ---
 
-## 6. **Filebrowser Service (`liberty-filebrowser`)** 📂
+## 6. **Gitea Service (`liberty-gitea`)** 📂
 
-- **Image**: `ghcr.io/fblettner/liberty-filebrowser:latest`
-- **Healthcheck**: Ensures service health by checking `/health` endpoint every 30 seconds.
+- **Image**: `ghcr.io/fblettner/liberty-gitea:latest`
+- **Healthcheck**: Ensures service health by checking `/` endpoint every 30 seconds.
 - **Volumes**: 
-  - Configuration in `fb-config` and data in `fb-data`.
-  - Shares Rundeck, Talend, Traefik certificates, and configuration via other volumes.
+  - Configuration and data in `liberty-gitea`.
 - **Restart Policy**: Set to `unless-stopped`.
 - **Networks**: Connected to `liberty-network`.
 - **Traefik Configuration**:
-  - 🌐 **Routing**: Routes HTTP requests to `/filebrowser`.
-  - 🛠️ **Middleware**: Uses `stripprefix` to remove `/filebrowser` from the path for internal routing.
-  - 🔌 **Port**: Exposed on port `80`.
+  - 🌐 **Routing**: Routes HTTP requests to `/gitea`.
+  - 🛠️ **Middleware**: Uses `stripprefix` to remove `/gitea` from the path for internal routing.
+  - 🔌 **Port**: Exposed on port `3000`.
 
 ---
 
 ## Volumes 🗃️
 
-- **fb-config**: Stores Filebrowser configuration.
-- **fb-data**: Stores Filebrowser data.
+- **node-logs**: Stores Logs for backend and frontend.
 - **pg-data**: Stores PostgreSQL data.
+- **pg-logs**: Stores Logs for database.
 - **pgadmin-data**: Stores pgAdmin data.
-- **rundeck-data**: Stores Rundeck data.
-- **rundeck-config**: Stores Rundeck configuration.
-- **talend-config**: Stores Talend configuration.
-- **nginx-config**: Stores Nginx configuration.
+- **liberty-gitea**: Stores gitea config and data.
+- **airflow-logs**: Stores logs for Airflow.
+- **airflow-dags**: Stores Dags for Airflow.
+- **airflow-plugins**: Stores Plugins for Airflow.
 - **traefik-certs**: Stores Traefik certificates (external).
 - **traefik-config**: Stores Traefik configuration (external).
 - **shared-data**: Stores shared data (external).
@@ -161,4 +159,10 @@ This document provides an overview of the functionality and configuration of the
 
 ---
 
-This configuration enables a scalable, containerized microservice architecture with **Node.js** for application logic, **PostgreSQL** for database management, **pgAdmin** for database administration, **Rundeck** for automation, **Keycloak OIDC** for authentication, and **Filebrowser** for file management. **Traefik** serves as the reverse proxy, handling routing and applying security middleware for all services.
+This configuration enables a scalable, containerized microservice architecture with **Node.js** for application logic, **PostgreSQL** for database management, **pgAdmin** for database administration, **Airflow** for automation, **Keycloak OIDC** for authentication, and **Gitea** for file management and versioning. **Traefik** serves as the reverse proxy, handling routing and applying security middleware for all services.
+
+---
+
+##  About us 👋
+### Franck Blettner / Founder of Nomana-IT
+With over two decades of dedicated experience in JD Edwards, I have cultivated a deep expertise, acquired extensive knowledge, and established a robust network of partners within the integration ecosystem surrounding this ERP platform. Throughout this journey, I've honed my skills in crafting intricate architectures, seamless interfaces, leveraging cutting-edge technologies, and ensuring robust security measures. Among my notable achievements is the development of a comprehensive management tool tailored to enhance the security and compliance of Oracle licenses, showcasing my commitment to innovation and excellence in the field.
